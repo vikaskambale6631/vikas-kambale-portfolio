@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jaypal Tupare | Portfolio</title>
+  <!-- Font Awesome for Social Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    *{margin:0; padding:0; box-sizing:border-box;}
+    body{
+      font-family:"Segoe UI",Arial,sans-serif;
+      background:#f9fafc; color:#333; line-height:1.6;
+      scroll-behavior:smooth;
+    }
+
+    /* NAVIGATION */
+    nav{
+      background: linear-gradient(90deg, #4f86f7 0%, #6fb1fc 100%); /* Lightweight blue gradient */
+      display:flex; flex-wrap:wrap; justify-content:center; gap:20px;
+      padding:20px; position:fixed; top:0; width:100%; z-index:1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    nav a{color:#fff; text-decoration:none; font-weight:500; transition:0.3s;}
+    nav a:hover{color:#ffd6d6;}
+
+    /* HERO */
+    .hero{
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; padding:120px 10% 80px;
+      background:#fff; color:#333;
+    }
+    .hero-text{flex:1.2; min-width:300px; padding-right:30px;}
+    .hero-text h5{color:#4f86f7; font-size:1rem; margin-bottom:10px;}
+    .hero-text h1{font-size:2.8rem; margin-bottom:10px; font-weight:700;}
+    .hero-text h1 span{color:#4f86f7;}
+    .hero-text p.role{font-size:1.3rem; margin-bottom:10px; font-weight:500;}
+    .hero-text p.sub{font-size:1rem; margin-bottom:20px; color:#555;}
+    .hero-text a.btn{
+      display:inline-block; padding:12px 25px; background:#4f86f7;
+      color:#fff; border-radius:30px; text-decoration:none; font-weight:600;
+      transition:0.3s;
+    }
+    .hero-text a.btn:hover{background:#6fb1fc;}
+
+    .hero-img{flex:0.8; min-width:320px; text-align:right; padding-left:30px;}
+    .hero-img img{
+      width:360px; height:360px; border-radius:50%; object-fit:cover;
+      border:6px solid #fff; box-shadow:0 4px 18px rgba(0,0,0,0.3);
+      transition:transform 0.4s;
+    }
+    .hero-img img:hover{transform:scale(1.07);}
+
+    /* SECTIONS */
+    section{
+      padding:60px 20px; max-width:1100px; margin:auto;
+      opacity:0; transform:translateY(50px);
+      transition:all 0.8s ease-in-out;
+    }
+    section.visible{opacity:1; transform:translateY(0);}
+    h2{
+      margin-bottom:30px; font-size:1.9rem;
+      color:#4f86f7; border-left:5px solid #6fb1fc;
+      padding-left:10px; font-weight:600;
+    }
+
+    /* EDUCATION */
+    .edu-container{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px;}
+    .edu-card{
+      background:linear-gradient(135deg,#e6f0ff,#ffffff);
+      padding:20px; border-radius:12px; border:1px solid #cdddf7;
+      box-shadow:0 4px 12px rgba(79,134,247,0.15);
+      transition:transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .edu-card:hover{
+      transform:translateY(-6px); 
+      box-shadow:0 6px 16px rgba(79,134,247,0.25);
+      background:linear-gradient(135deg,#dbe9ff,#f7faff);
+    }
+    .edu-card h3{color:#2a5298; margin-bottom:10px; font-weight:600;}
+
+    /* SKILLS */
+    .skill{margin-bottom:20px;}
+    .skill-name{margin-bottom:8px; font-weight:500; color:#333;}
+    .skill-bar{background:#eaeaea; border-radius:8px; overflow:hidden; height:12px;}
+    .skill-fill{
+      height:100%; background:linear-gradient(90deg,#4f86f7,#6fb1fc);
+      width:0; border-radius:8px; transition:width 1.5s ease-in-out;
+    }
+
+    /* PROJECT CARDS */
+    .card-container{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;}
+    .card{
+      background:#fff; padding:20px; border-radius:12px;
+      border:1px solid #eee; box-shadow:0 2px 8px rgba(0,0,0,0.05);
+      transition:transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .card:hover{
+      transform:translateY(-6px); 
+      box-shadow:0 6px 14px rgba(0,0,0,0.12);
+      background:#f0f6ff;
+    }
+    .card h3{margin-bottom:10px; color:#4f86f7; font-size:1.2rem;}
+    .card a{display:inline-block; margin-top:10px; padding:8px 16px; background:#4f86f7;
+      color:#fff; border-radius:6px; text-decoration:none; transition:0.3s;}
+    .card a:hover{background:#6fb1fc;}
+
+    /* BUTTON */
+    .resume-btn{
+      display:inline-block; margin-top:20px; padding:12px 25px;
+      background:#4f86f7; color:#fff; font-weight:500; border-radius:6px;
+      text-decoration:none; transition:0.3s;
+    }
+    .resume-btn:hover{background:#6fb1fc;}
+
+    /* CTA Transparent + Centered */
+    .cta-wrap{
+      width:100%; background:transparent; color:#333; padding:40px 20px; text-align:center;
+    }
+    .cta-title{font-size:1.8rem; font-weight:700; margin-bottom:20px;}
+    .cta-btn{
+      display:inline-block; padding:14px 30px; border-radius:999px;
+      background:#f9b233; color:#000; text-decoration:none; font-weight:800;
+      letter-spacing:.5px; box-shadow:0 8px 20px rgba(249,178,51,.25); transition:.25s;
+    }
+    .cta-btn:hover{transform:translateY(-2px); box-shadow:0 10px 26px rgba(249,178,51,.35);}
+    .cta-social{margin-top:25px;}
+    .cta-social p{color:#555; margin-bottom:12px;}
+    .social-badges{display:flex; justify-content:center; gap:14px;}
+    .social-badges a{
+      width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center;
+      border-radius:50%; color:#fff; font-size:1.1rem;
+      transition:.25s;
+    }
+    .social-badges a:hover{transform:translateY(-2px);}
+
+    /* FOOTER */
+    footer{
+      text-align:center;
+      background: linear-gradient(90deg, #4f86f7 0%, #6fb1fc 100%); /* Same lightweight blue gradient as header */
+      color:#fff;
+      padding:20px;
+      margin-top:50px;
+    }
+    footer a{color:#fff; text-decoration:none; margin:0 10px;}
+    footer a:hover{text-decoration:underline;}
+
+    @media(max-width:768px){
+      nav{background: linear-gradient(90deg, #4f86f7 0%, #6fb1fc 100%);}
+      nav a{color:#fff;}
+      .hero{flex-direction:column; text-align:center;}
+      .hero-text{margin-bottom:30px; padding-right:0;}
+      .hero-img{text-align:center; padding-left:0;}
+      .hero-img img{width:260px; height:260px;}
+      .cta-social{flex-direction:column;}
+    }
+
+    /* Typing caret */
+    .typing{
+      border-right:3px solid #4f86f7;
+      white-space:nowrap; overflow:hidden; display:inline-block;
+      animation:blinkCursor .7s infinite;
+    }
+    @keyframes blinkCursor { 50%{border-color:transparent;} }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#designing">Designing</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#languages">Languages</a>
+    <a href="#hobbies">Hobbies</a>
+    <a href="#resume">Resume</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <h5>WELCOME!</h5>
+      <h1><span class="typing"></span></h1>
+      <p class="role">Python Full Stack Developer</p>
+      <p class="sub">Electronics & Telecommunication Engineer | Tech Enthusiast | Problem Solver</p>
+      <a href="#projects" class="btn">My Works</a>
+    </div>
+    <div class="hero-img">
+      <img src="profile_photo.png" alt="Profile Photo">
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      Entry-level Python Full Stack Developer skilled in Python, Django, React, SQL, and MySQL, 
+      with experience in building and deploying web applications through academic projects and certifications. 
+      Strong problem-solving and collaboration abilities with a passion for learning emerging technologies. 
+      Seeking to contribute technical expertise and grow within a dynamic organization.
+    </p>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="edu-container">
+      <div class="edu-card">
+        <h3>2021 – 2024</h3>
+        <p><strong>Bachelor of Electronics and Telecommunication Engineering</strong></p>
+        <p>Sinhgad Institute of Technology and Science, Pune (SPPU)</p>
+        <p>CGPA: 9.03</p>
+      </div>
+      <div class="edu-card">
+        <h3>2015 – 2018</h3>
+        <p><strong>Diploma in Electronics and Telecommunication Engineering</strong></p>
+        <p>Cusrow Wadia Institute of Technology, Pune</p>
+        <p>Percentage: 75.13%</p>
+      </div>
+      <div class="edu-card">
+        <h3>2014 – 2015</h3>
+        <p><strong>Secondary School Certificate</strong></p>
+        <p>Lokmanya Tilak High Secondary School, Thergaon, Pune</p>
+        <p>Percentage: 79.60%</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skill"><div class="skill-name">Python</div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+    <div class="skill"><div class="skill-name">Django</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+    <div class="skill"><div class="skill-name">React</div><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+    <div class="skill"><div class="skill-name">SQL & MySQL</div><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+    <div class="skill"><div class="skill-name">HTML & CSS</div><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+    <div class="skill"><div class="skill-name">JavaScript</div><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>Smart Public Transport Ticketing System</h3>
+        <p>IoT-driven solution using ESP32 with UPI integration. Enables QR-based ticket booking, secure payments, and real-time validation, ensuring seamless and paperless travel.</p>
+        <a href="" target="_blank">View Project</a>
+      </div>
+      <div class="card">
+        <h3>Online Medicine Ordering System</h3>
+        <p>Full-stack Django app with authentication, cart, admin panel, and product management for online medicine orders.</p>
+        <a href="" target="_blank">View Project</a>
+      </div>
+      <div class="card">
+        <h3>Exam Management System</h3>
+        <p>Django-based web app with authentication, subject-wise question management, exam submission, score calculation, and admin features for efficient exam handling.</p>
+        <a href="" target="_blank">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Frontend Designing Work -->
+  <section id="designing">
+    <h2>Frontend Designing Work</h2>
+    <div class="card-container">
+      <div class="card"><h3>PLACEMENT MATERIAL FOR FRESHER</h3><p>Helpful resources for entry-level freshers</p><a href="https://vikaskambale6631.github.io/material-data-for-placement/" target="_blank">🌐 View Site</a></div>
+      <div class="card"><h3>COURSE DASHBOARD</h3><p>Institute helping dashboard</p><a href="https://vikaskambale6631.github.io/1226-dashboard/" target="_blank">🌐 View Site</a></div>
+      <div class="card"><h3>Dashboard UI</h3><p>Interactive dashboard with charts and widgets.</p><a href="#" target="_blank">🌐 View Site</a></div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <ul>
+      <li>Python Full Stack Development with Django – The Kiran Academy</li>
+      <li>ChatGPT for Everyone – Learn Prompting</li>
+      <li>Python Django 101 – Simplilearn</li>
+      <li>SQL for Data Science – Simplilearn</li>
+    </ul>
+  </section>
+
+  <!-- Languages -->
+  <section id="languages">
+    <h2>Languages</h2>
+    <ul><li>English</li><li>Hindi</li><li>Marathi</li></ul>
+  </section>
+
+  <!-- Hobbies -->
+  <section id="hobbies">
+    <h2>Hobbies</h2>
+    <ul><li>Exploring AI Tools</li><li>Editing</li><li>Self-learning online resources</li></ul>
+  </section>
+
+  <!-- Resume -->
+  <section id="resume">
+    <h2>Resume</h2>
+    <p>Click below to view/download my resume:</p>
+    <a href="Jaypal Tupare_2025Final_Resume.pdf" target="_blank" class="resume-btn">📄 View / Download Resume</a>
+  </section>
+
+  <!-- CTA Transparent + Centered -->
+  <div class="cta-wrap">
+    <div class="cta-title">Have a Question?</div>
+    <a class="cta-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSe_56DXCNIQazSX44N-fFhD-hqB2GrWlMc-3-KVOPhaDlrhGQ/viewform?usp=header">Send Message</a>
+    <div class="cta-social">
+      <p>Find me on</p>
+      <div class="social-badges">
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/jaypal-tupare-995781167" target="_blank" aria-label="LinkedIn" style="background:#0A66C2; color:#fff;">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/message/44M5L5M7U2Q5K1" target="_blank" aria-label="WhatsApp" style="background:#25D366; color:#fff;">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/share/15vo55T9YB/" target="_blank" aria-label="Facebook" style="background:#1877F2; color:#fff;">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/synonymous_9421?igsh=MTU4MWl0MWNkem1jYw==" target="_blank" aria-label="Instagram" style="background:radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color:#fff;">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Jaypal Tupare | Portfolio</p>
+    <p>
+      📞 <a href="tel:+919145291501">+91 9145291501</a> |
+      📧 <a href="mailto:jaypaltupare.99@gmail.com">jaypaltupare.99@gmail.com</a> |
+      🔗 <a href="https://www.linkedin.com/in/jaypal-tupare-995781167" target="_blank">LinkedIn</a> |
+      💻 <a href="https://github.com/jaycoll1999" target="_blank">GitHub</a> |
+      📍 Pune, Maharashtra, India
+    </p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Typing Animation
+    const text = "I'm Jaypal Tupare";
+    let i = 0;
+    function typing(){
+      if(i < text.length){
+        document.querySelector(".typing").textContent += text.charAt(i);
+        i++;
+        setTimeout(typing, 120);
+      }
+    }
+    window.onload = typing;
+
+    // Scroll + skill bar animation
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+          if(entry.target.id==="skills"){
+            document.querySelectorAll(".skill-fill").forEach(bar=>{
+              const width = bar.style.width;
+              bar.style.width = "0";
+              setTimeout(()=>{ bar.style.width = width; }, 200);
+            });
+          }
+        }
+      });
+    },{threshold:0.2});
+    sections.forEach(section=>observer.observe(section));
+  </script>
+</body>
+</html>
